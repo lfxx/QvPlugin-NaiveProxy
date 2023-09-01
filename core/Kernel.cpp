@@ -29,7 +29,7 @@ bool NaiveProxyKernel::StartKernel()
         return false;
     }
 
-    QStringList arguments{ "{}" };
+    QStringList arguments{};
 
     // proxy
     {
