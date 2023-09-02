@@ -3,7 +3,7 @@ name: QvPlugin Build Action - cmake
 on: 
   push:
   release:
-    types: [released]
+    types: [created]
 
 jobs:
   build:
