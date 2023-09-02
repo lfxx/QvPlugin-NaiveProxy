@@ -1,5 +1,4 @@
 # QvPlugin-NaiveProxy
-> 你们啊，N a i v e！
 
 ## 简明教程
 1. 从 Release 里下载对应版本的插件
@@ -10,6 +9,3 @@
 5. 导入符合格式的连接，形如 `naive+https://username:password@some.website:443?padding=true#Demo`；
    或者点击添加连接，手动编辑设置。
 6. 双击添加的节点，大功告成。
-
-## 交流讨论
-欢迎加入 [Qv2ray User Group](https://t.me/qv2ray) 与我们讨论。
