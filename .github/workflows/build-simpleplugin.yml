@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         qt_version: [5.11.3]
-        platform: [ubuntu-16.04, macos-latest, windows-latest]
+        platform: [ubuntu-20.04, macos-latest, windows-latest]
         arch: [x86, x64]
         include: 
           - platform: windows-latest
@@ -22,7 +22,7 @@ jobs:
             qtarch: win64_msvc2015_64
             cmakearch: x64
         exclude:
-          - platform: ubuntu-16.04
+          - platform: ubuntu-20.04
             arch: x86
           - platform: macos-latest
             arch: x86
@@ -92,11 +92,11 @@ jobs:
           cmake --build . --parallel $(sysctl -n hw.logicalcpu)
 # --------------------------------------------------------
       - name: Linux - ${{ matrix.qt_version }} - Generate Dependencies and Build
-        if: matrix.platform == 'ubuntu-16.04'
+        if: matrix.platform == 'ubuntu-20.04'
         shell: bash
         env:
-          CC: gcc-7
-          CXX: g++-7
+          CC: gcc-9
+          CXX: g++-9
           CXXFLAGS: -fno-sized-deallocation
         run: |
           mkdir build
@@ -137,14 +137,14 @@ jobs:
           overwrite: true
 # --------------------------------------------------------
       - name: Linux - ${{ matrix.qt_version }} - Uploading artifact
-        if: matrix.platform == 'ubuntu-16.04'
+        if: matrix.platform == 'ubuntu-20.04'
         uses: actions/upload-artifact@master
         with:
           name: ${{ steps.get_name.outputs.NAME }}-${{ github.sha }}.linux-${{ matrix.arch }}.qt${{ matrix.qt_version }}.so
           path: build/lib${{ steps.get_name.outputs.NAME }}.so
       - name: Linux - ${{ matrix.qt_version }} - Upload binaries to release
         uses: svenstaro/upload-release-action@v1-release
-        if: github.event_name == 'release' && matrix.platform == 'ubuntu-16.04'
+        if: github.event_name == 'release' && matrix.platform == 'ubuntu-20.04'
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: build/lib${{ steps.get_name.outputs.NAME }}.so
